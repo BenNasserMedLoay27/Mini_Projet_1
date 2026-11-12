@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card shadow mb-4"><div class="card-body">
+    <table class="table table-striped">
+      <thead><tr><th>N°</th><th>Id</th><th>Nom</th><th>Prix d'inscription</th><th>Date d'inscription</th><th>Système</th>@if (authService.isAdmin()) { <th>Actions</th> }</tr></thead>
+      <tbody>
+        @for (universite of universites; track universite.idUniversite; let index = $index) {
+          <tr>
+            <td>{{index}}</td><td>{{universite.idUniversite}}</td><td>{{universite.nomUniversite}}</td><td>{{universite.prixUniversite}}</td><td>{{universite.dateCreation | date:'dd/MM/yyyy'}}</td><td>{{universite.systeme?.nomSysteme || 'PAS DE SYSTEME'}}</td>
+            @if (authService.isAdmin()) {
+              <td><button type="button" class="btn btn-danger me-2" (click)="supprimerUniversite(universite)">Supprimer</button><a class="btn btn-success" [routerLink]="['/updateUniversite', universite.idUniversite]">Modifier</a></td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div></div>
+</div>

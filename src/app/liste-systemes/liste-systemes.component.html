@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>Gestion des systèmes</h2>
+  <form (ngSubmit)="enregistrer()" class="mb-4">
+    <div class="mb-2">
+      <label for="idSysteme" class="form-label">ID système</label>
+      <input id="idSysteme" type="number" name="idSysteme" [(ngModel)]="systeme.idSysteme" [readonly]="!ajout" class="form-control w-auto" required>
+    </div>
+    <div class="mb-2">
+      <label for="nomSysteme" class="form-label">Nom du système</label>
+      <input id="nomSysteme" type="text" name="nomSysteme" [(ngModel)]="systeme.nomSysteme" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">{{ajout ? 'Ajouter' : 'Modifier'}}</button>
+    @if (!ajout) { <button type="button" class="btn btn-secondary ms-2" (click)="nouveau()">Annuler</button> }
+  </form>
+  <table class="table table-striped">
+    <thead><tr><th>ID</th><th>Nom du système</th><th></th></tr></thead>
+    <tbody>
+      @for (item of systemes; track item.idSysteme) {
+        <tr><td>{{item.idSysteme}}</td><td>{{item.nomSysteme}}</td><td><button type="button" class="btn btn-success" (click)="modifier(item)">Modifier</button></td></tr>
+      }
+    </tbody>
+  </table>
+</div>
